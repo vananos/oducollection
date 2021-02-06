@@ -1,0 +1,30 @@
+@use 'src/styles/common' as *;
+
+.navbar {
+  width: 350px;
+
+  .nav-item {
+    display: block;
+    height: 60px;
+    text-align: right;
+    cursor: pointer;
+
+    a {
+      display: block;
+      font-size: $font-size-larger;
+      padding: 10px 40px 10px 40px;
+      line-height: 40px;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    &.selected {
+      background: $dark;
+
+      a {
+        color: white;
+      }
+    }
+  }
+}

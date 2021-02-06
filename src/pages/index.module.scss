@@ -1,0 +1,14 @@
+@use 'src/styles/common' as *;
+
+.about {
+  padding-right: 100px;
+
+  h1 {
+    font-size: 9em;
+    padding-bottom: 35px;
+  }
+
+  p {
+    margin-bottom: 30px;
+  }
+}

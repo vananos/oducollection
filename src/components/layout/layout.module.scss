@@ -1,0 +1,35 @@
+.container {
+  .header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+
+  .navbar {
+    position: fixed;
+    top: 150px;
+  }
+
+  .social {
+    position: fixed;
+    top: 150px;
+    right: 0px;
+  }
+
+  .main {
+    margin-top: 150px;
+    margin-left: 350px;
+    padding: 70px;
+    padding-top: 0;
+  }
+
+  @media only screen and (max-width: 1000px) {
+    .header {
+      position: static;
+      width: 100%;
+    }
+    .social, .header, .navbar {
+      position: static;
+    }
+  }
+}

@@ -1,0 +1,42 @@
+@use 'src/styles/common' as *;
+
+.post-preview {
+  padding: 50px 10px;
+
+  .preview-img {
+    float: left;
+    display: inline-block;
+    width: 300px;
+    height: 200px;
+  }
+
+  .post-description {
+    float: left;
+    height: 120px;
+    margin: 40px;
+
+
+    > h1 {
+      font-size: $font-size-big;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+
+    > footer {
+      margin-top: 10px;
+
+      div {
+        display: inline-block;
+        font-size: $font-size-small;
+        color: $dark-light;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  &:after {
+    display: block;
+    clear: both;
+    content: "";
+  }
+}

@@ -1,0 +1,17 @@
+@use 'src/styles/common' as *;
+
+.social {
+  list-style-type: none;
+
+  .icon {
+    background: $dark;
+    display: block;
+    width: 32px;
+    height: 32px;
+    padding: 14px;
+
+    &:hover {
+      fill: $color !important;
+    }
+  }
+}
