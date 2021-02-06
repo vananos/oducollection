@@ -4,7 +4,7 @@ import Img from 'gatsby-image';
 import styles from './post-preview.module.scss';
 import { minutesToRead, reachTextToText, toArticlePath } from '../../../utils/utils';
 
-export default function PostPreview({ data }) {
+export default ({ data }) => {
   const { postPreviewImage } = data;
   return (
     <article className={styles.postPreview}>
@@ -29,4 +29,4 @@ export default function PostPreview({ data }) {
       </div>
     </article>
   );
-}
+};

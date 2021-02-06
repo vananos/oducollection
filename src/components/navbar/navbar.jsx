@@ -29,15 +29,13 @@ function Nav({
   );
 }
 
-export default function Navbar({ className }) {
-  return (
-    <Nav className={className}>
-      <NavItem href="/">about</NavItem>
-      <NavItem href="/design">design</NavItem>
-      <NavItem href="/drawing">drawing</NavItem>
-      <NavItem href="/portrait">portrait</NavItem>
-      <NavItem href="/blog">blog</NavItem>
-      <NavItem href="/cv">cv</NavItem>
-    </Nav>
-  );
-}
+export default ({ className }) => (
+  <Nav className={className}>
+    <NavItem href="/">about</NavItem>
+    <NavItem href="/design">design</NavItem>
+    <NavItem href="/drawing">drawing</NavItem>
+    <NavItem href="/portrait">portrait</NavItem>
+    <NavItem href="/blog">blog</NavItem>
+    <NavItem href="/cv">cv</NavItem>
+  </Nav>
+);

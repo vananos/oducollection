@@ -4,7 +4,7 @@ import Layout from '../components/layout/layout';
 import styles from './index.module.scss';
 import { renderReachText } from '../utils/utils';
 
-export default function Home() {
+export default () => {
   const data = useStaticQuery(
     graphql`
       query AboutQuery {
@@ -34,4 +34,4 @@ export default function Home() {
       </article>
     </Layout>
   );
-}
+};

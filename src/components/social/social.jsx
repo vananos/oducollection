@@ -8,7 +8,7 @@ import facebookIcon from '../../../static/img/social/facebook.svg';
 import emailIcon from '../../../static/img/social/email.svg';
 import styles from './social.module.scss';
 
-export default function Social({ className = '' }) {
+export default ({ className = '' }) => {
   function IconLink({
     href,
     icon,
@@ -40,4 +40,4 @@ export default function Social({ className = '' }) {
       </li>
     </ul>
   );
-}
+};
