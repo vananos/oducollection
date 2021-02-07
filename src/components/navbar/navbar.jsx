@@ -4,9 +4,11 @@ import styles from './navbar.module.scss';
 
 function NavItem({
   href,
-  children,
+  children
 }) {
-  const { pathname } = window.location;
+  const isBrowser = () => typeof window !== 'undefined';
+  const { pathname } = isBrowser() ? window.location : '';
+
   const isSelected = (href === '/' && pathname === '/')
     || (href !== '/' && pathname.startsWith(href));
   return (
@@ -18,7 +20,7 @@ function NavItem({
 
 function Nav({
   children,
-  className = '',
+  className = ''
 }) {
   return (
     <nav className={`${styles.navbar} ${className}`.trim()}>
