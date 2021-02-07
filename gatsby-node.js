@@ -28,6 +28,7 @@ exports.createPages = async ({
   const postsByTypeCount = {
     design: 0,
     blog: 0,
+    drawing: 0,
   };
 
   result.data.allContentfulPost.edges.forEach((item) => {
@@ -69,6 +70,7 @@ exports.createPages = async ({
             currentPage: i + 1,
             pagePaths,
             numPages,
+            type: prefix,
           },
         });
       });

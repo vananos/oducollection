@@ -8,9 +8,12 @@ export default ({ data }) => {
   const { postPreviewImage } = data;
   return (
     <article className={styles.postPreview}>
-      <div className={styles.previewImg}>
-        {postPreviewImage && <Img fixed={postPreviewImage.fixed} alt={postPreviewImage.title} />}
-      </div>
+      {postPreviewImage
+        && (
+        <div className={styles.previewImg}>
+          <Img fixed={postPreviewImage.fixed} alt={postPreviewImage.title} />
+        </div>
+        )}
       <div className={styles.postDescription}>
         <h1>
           <Link to={toArticlePath(data.slug)}>

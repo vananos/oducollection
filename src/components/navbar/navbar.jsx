@@ -34,7 +34,7 @@ export default ({ className }) => (
     <NavItem href="/">about</NavItem>
     <NavItem href="/design">design</NavItem>
     <NavItem href="/drawing">drawing</NavItem>
-    <NavItem href="/portrait">portrait</NavItem>
+    <NavItem href="/portraits">portrait</NavItem>
     <NavItem href="/blog">blog</NavItem>
     <NavItem href="/cv">cv</NavItem>
   </Nav>

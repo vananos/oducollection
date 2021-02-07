@@ -41,11 +41,12 @@ export default ({
 };
 
 export const blogListQuery = graphql`
-query blogListQuery($skip: Int!, $limit: Int!) {
+query blogListQuery($skip: Int!, $limit: Int!, $type: String!) {
      allContentfulPost (
       sort: { fields: [createdAt], order: DESC }
       limit: $limit
       skip: $skip
+      filter: {type: {eq: $type}}
      ){
         edges {
           node {
