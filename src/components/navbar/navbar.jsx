@@ -7,7 +7,10 @@ function NavItem({
   children
 }) {
   const isBrowser = () => typeof window !== 'undefined';
-  const { pathname } = isBrowser() ? window.location : '';
+  let pathname = '';
+  if (isBrowser()) {
+    pathname = window.location.pathname;
+  }
 
   const isSelected = (href === '/' && pathname === '/')
     || (href !== '/' && pathname.startsWith(href));
