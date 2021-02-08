@@ -3,7 +3,7 @@ import Img from 'gatsby-image';
 import Layout from '../components/layout/layout';
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
-import styles from './portrait.module.scss';
+import styles from './portraits.module.scss';
 
 export default class Portraits extends Component {
   constructor(props) {
@@ -41,17 +41,18 @@ export default class Portraits extends Component {
                 <div key={i} className={styles.photoSet}>
                   <h1>{node.title}</h1>
                   <div className={styles.setPreview}>
-                    {node.photos.slice(0, 5)
+                    {node.photos
                       .map((image, idx) => (
                         <div
                           onClick={() => {
-                            console.log(node.photos);
                             this.setState({
                               idx,
                               images: fluidImages,
                               isOpen: true
                             });
-                          }}>
+                          }}
+                          className={styles.previewCard}
+                        >
                           <Img
                             key={idx}
                             fixed={image.fixed}
