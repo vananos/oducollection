@@ -15,11 +15,11 @@ export default class Header extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', () => this.showToTop());
+    window.addEventListener('scroll', this.showToTop);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', () => this.showToTop());
+    window.removeEventListener('scroll', this.showToTop);
   }
 
   showToTop() {

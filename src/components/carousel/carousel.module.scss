@@ -1,0 +1,71 @@
+@use 'src/styles/common' as *;
+
+.carousel-wrapper {
+  display: flex;
+
+  .carousel {
+    overflow: hidden;
+
+    > div {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      max-width: 100%;
+      -webkit-overflow-scrolling: touch;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      .carousel-card {
+        flex: 0 0 auto;
+        padding: 0 20px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .arrow {
+    cursor: pointer;
+    flex-shrink: 0;
+    width: 50px;
+  }
+
+  .left {
+    &:after {
+      visibility: hidden;
+      position: relative;
+      display: block;
+      top: calc(50% - 15px);
+      left: 10px;
+      content: "";
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 25px 25px 25px 0;
+      border-color: transparent $light-dark transparent transparent;
+    }
+  }
+
+  .right {
+    &:after {
+      visibility: hidden;
+      position: relative;
+      display: block;
+      top: calc(50% - 15px);
+      left: 15px;
+      content: "";
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 25px 0 25px 25px;
+      border-color: transparent transparent transparent $light-dark;
+    }
+  }
+
+  .shown {
+    &:after {
+      visibility: visible;
+    }
+  }
+}

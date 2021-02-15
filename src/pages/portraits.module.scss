@@ -5,22 +5,5 @@
     }
 
     margin-bottom: 40px;
-
-    .set-preview {
-      display: flex;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      max-width: 100%;
-      -webkit-overflow-scrolling: touch;
-      &::-webkit-scrollbar {
-        display: none;
-      }
-
-      .preview-card {
-        flex: 0 0 auto;
-        padding: 0 20px;
-        cursor: pointer;
-      }
-    }
   }
 }

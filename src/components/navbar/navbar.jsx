@@ -4,7 +4,7 @@ import styles from './navbar.module.scss';
 
 function NavItem({
   href,
-  children
+  children,
 }) {
   const isBrowser = () => typeof window !== 'undefined';
   let pathname = '';
@@ -23,7 +23,7 @@ function NavItem({
 
 function Nav({
   children,
-  className = ''
+  className = '',
 }) {
   return (
     <nav className={`${styles.navbar} ${className}`.trim()}>
