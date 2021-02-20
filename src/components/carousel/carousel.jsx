@@ -94,26 +94,24 @@ export default class Carousel extends React.Component {
               clearInterval(this.scrollLeftIntervalId);
             }}
           />
-          <div className={styles.carousel}>
-            <div ref={this.carouselRef}>
-              {photos.map((image, i) => (
-                <div
-                  onClick={() => {
-                    this.setState({
-                      idx: i,
-                      images: fluidImages,
-                      photoPreview: true,
-                    });
-                  }}
-                  className={styles.carouselCard}
-                  key={image.id}
-                >
-                  <Img
-                    fixed={image.fixed}
-                  />
-                </div>
-              ))}
-            </div>
+          <div className={styles.carousel} ref={this.carouselRef}>
+            {photos.map((image, i) => (
+              <div
+                onClick={() => {
+                  this.setState({
+                    idx: i,
+                    images: fluidImages,
+                    photoPreview: true,
+                  });
+                }}
+                className={styles.carouselCard}
+                key={image.id}
+              >
+                <Img
+                  fixed={image.fixed}
+                />
+              </div>
+            ))}
           </div>
           <div
             className={[styles.arrow, styles.right, scrollToRight ? styles.shown : ''].join(' ')}

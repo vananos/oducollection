@@ -1,7 +1,10 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../../components/layout/layout';
-import { renderReachText, typeToMenuItem } from '../../utils/utils';
+import {
+  minutesToRead, reachTextToText, renderReachText, typeToMenuItem,
+} from '../../utils/utils';
+import styles from './post.module.scss';
 
 export default ({
   data,
@@ -11,12 +14,21 @@ export default ({
     title,
     content,
     type,
+    createdAt,
   } = data.contentfulPost;
 
   return (
     <Layout selectedMenuItem={typeToMenuItem(type)}>
-      <article>
-        <h1>{title}</h1>
+      <article className={styles.article}>
+        <header>
+          <h1>{title}</h1>
+          <div>{createdAt}</div>
+          <div>
+            {minutesToRead(reachTextToText(JSON.parse(content.raw)))}
+            {' '}
+            min read
+          </div>
+        </header>
         <section>
           {renderReachText(content)}
         </section>
@@ -33,6 +45,7 @@ export const blogQuery = graphql`
       tags
       type
       slug
+      createdAt(formatString: "Do MMMM YYYY")
       content {
         raw
         references {
