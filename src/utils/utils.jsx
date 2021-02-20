@@ -2,6 +2,7 @@ import React from 'react';
 import { BLOCKS } from '@contentful/rich-text-types';
 import { renderRichText } from 'gatsby-source-contentful/rich-text';
 import Img from 'gatsby-image';
+import { Menu } from '../components/navbar/navbar';
 
 export function toFormattedDateString(dateString) {
   const date = new Date(dateString);
@@ -43,4 +44,16 @@ export function reachTextToText(reachTextNode) {
 
 export function toArticlePath(slug) {
   return `/article/${slug}`;
+}
+
+export function typeToMenuItem(type) {
+  const effectiveType = Array.isArray(type) ? type[0] : type;
+
+  const TypeMenuMap = {
+    design: Menu.DESIGN,
+    drawing: Menu.DRAWING,
+    blog: Menu.BLOG,
+  };
+
+  return TypeMenuMap[effectiveType] || Menu.ABOUT;
 }

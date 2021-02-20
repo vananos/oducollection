@@ -13,8 +13,9 @@
   .post-description {
     float: left;
     height: 120px;
+    max-width: 700px;
     margin: 40px;
-
+    word-break: break-word;
 
     > h1 {
       font-size: $font-size-big;

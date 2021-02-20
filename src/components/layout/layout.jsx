@@ -1,13 +1,13 @@
 import React from 'react';
 import Header from '../header/header';
-import Navbar from '../navbar/navbar';
+import Navbar, { Menu } from '../navbar/navbar';
 import Social from '../social/social';
 import styles from './layout.module.scss';
 
-export default ({ children }) => (
+export default ({ children, selectedMenuItem = Menu.ABOUT }) => (
   <div className={styles.container}>
     <Header className={styles.header} />
-    <Navbar className={styles.navbar} />
+    <Navbar className={styles.navbar} selectedItem={selectedMenuItem} />
     <main className={styles.main}>
       {children}
     </main>

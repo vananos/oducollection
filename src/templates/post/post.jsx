@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../../components/layout/layout';
-import { renderReachText } from '../../utils/utils';
+import { renderReachText, typeToMenuItem } from '../../utils/utils';
 
 export default ({
   data,
@@ -10,9 +10,11 @@ export default ({
   const {
     title,
     content,
+    type,
   } = data.contentfulPost;
+
   return (
-    <Layout>
+    <Layout selectedMenuItem={typeToMenuItem(type)}>
       <article>
         <h1>{title}</h1>
         <section>

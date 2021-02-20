@@ -3,6 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import Layout from '../components/layout/layout';
 import styles from './index.module.scss';
 import { renderReachText } from '../utils/utils';
+import { Menu } from '../components/navbar/navbar';
 
 export default () => {
   const data = useStaticQuery(
@@ -23,7 +24,7 @@ export default () => {
   ).allContentfulAbout.edges[0].node;
 
   return (
-    <Layout>
+    <Layout selectedMenuItem={Menu.ABOUT}>
       <article className={styles.about}>
         <header>
           <h1>{data.title}</h1>

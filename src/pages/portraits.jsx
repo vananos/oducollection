@@ -4,6 +4,7 @@ import Layout from '../components/layout/layout';
 import 'react-image-lightbox/style.css';
 import styles from './portraits.module.scss';
 import Carousel from '../components/carousel/carousel';
+import { Menu } from '../components/navbar/navbar';
 
 export default ({ data }) => {
   const {
@@ -13,7 +14,7 @@ export default ({ data }) => {
   } = data;
 
   return (
-    <Layout>
+    <Layout selectedMenuItem={Menu.PORTRAITS}>
       <section className={styles.portraits}>
         {
           portraits.map(({ node }) => (

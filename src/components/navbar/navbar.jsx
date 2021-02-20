@@ -4,18 +4,11 @@ import styles from './navbar.module.scss';
 
 function NavItem({
   href,
+  selected,
   children,
 }) {
-  const isBrowser = () => typeof window !== 'undefined';
-  let pathname = '';
-  if (isBrowser()) {
-    pathname = window.location.pathname;
-  }
-
-  const isSelected = (href === '/' && pathname === '/')
-    || (href !== '/' && pathname.startsWith(href));
   return (
-    <li className={[styles.navItem, isSelected ? styles.selected : ''].join(' ')}>
+    <li className={[styles.navItem, selected ? styles.selected : ''].join(' ')}>
       <Link to={href}>{children}</Link>
     </li>
   );
@@ -34,13 +27,30 @@ function Nav({
   );
 }
 
-export default ({ className }) => (
+export default ({
+  className,
+  selectedItem,
+}) => (
   <Nav className={className}>
-    <NavItem href="/">about</NavItem>
-    <NavItem href="/design">design</NavItem>
-    <NavItem href="/drawing">drawing</NavItem>
-    <NavItem href="/portraits">portrait</NavItem>
-    <NavItem href="/blog">blog</NavItem>
-    <NavItem href="/cv">cv</NavItem>
+    {[
+      ['/', 'about'],
+      ['/design', 'design'],
+      ['/drawing', 'drawing'],
+      ['/portraits', 'portraits'],
+      ['/blog', 'blog'],
+      ['/cv', 'cv'],
+    ].map(([
+      href,
+      text,
+    ]) => <NavItem href={href} key={text} selected={selectedItem === text}>{text}</NavItem>)}
   </Nav>
 );
+
+export const Menu = Object.freeze({
+  ABOUT: 'about',
+  DESIGN: 'design',
+  DRAWING: 'drawing',
+  PORTRAITS: 'portraits',
+  BLOG: 'blog',
+  CV: 'cv',
+});

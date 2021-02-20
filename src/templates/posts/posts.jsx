@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import Layout from '../../components/layout/layout';
 import PostList from '../../components/post/post-list/post-list';
 import styles from './posts.module.scss';
+import { typeToMenuItem } from '../../utils/utils';
 
 export default ({
   data,
@@ -11,9 +12,10 @@ export default ({
   const posts = data.allContentfulPost.edges;
   const {
     currentPage,
+    type,
   } = pageContext;
   return (
-    <Layout>
+    <Layout selectedMenuItem={typeToMenuItem(type)}>
       <PostList posts={posts} />
       <footer className={styles.footer}>
         {
