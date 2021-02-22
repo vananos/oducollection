@@ -72,11 +72,12 @@ export default class Like extends React.Component {
       updating,
     } = this.state;
     return (
-      <div className={[styles.like, updating ? styles.updating : ''].join(' ')}>
+      <div
+        className={[styles.like, updating ? styles.updating : '', liked ? '' : styles.notLiked].join(' ')}
+        onClick={() => this.like()}
+      >
         <InlineSVG
           src={liked || updating ? starFull : starBorder}
-          className={[styles.icon, liked ? '' : styles.notLiked].join(' ')}
-          onClick={() => this.like()}
         />
         <p>{likesCount}</p>
       </div>

@@ -11,11 +11,12 @@
     margin-left: 5px;
   }
 
-  .icon {
-    &.not-liked {
-      &:hover {
-        fill: $color !important;
-      }
+  &.not-liked:hover {
+    p {
+      color: $color !important;
+    }
+    svg {
+      fill: $color !important;
     }
   }
 
