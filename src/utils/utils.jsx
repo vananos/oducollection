@@ -62,7 +62,7 @@ export function likesProvider(resourceIds) {
         body: JSON.stringify({
           resourceIds,
         }),
-      }).then((res) => res.json());
+      }).then((res) => Promise.resolve(res.json()));
     }
     return (await likes)[resourceId] || 0;
   };
