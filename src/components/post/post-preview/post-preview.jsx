@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'gatsby';
 import Img from 'gatsby-image';
 import styles from './post-preview.module.scss';
@@ -16,15 +16,6 @@ export default ({ data }) => {
     content,
     likes,
   } = data;
-  const [likesCount, setLikes] = useState(0);
-
-  useEffect(() => likes(id)
-    .then((currentLikesCount) => {
-      console.error('UUUUUUUUU', currentLikesCount);
-      if (currentLikesCount !== likesCount) {
-        setLikes(currentLikesCount);
-      }
-    }));
 
   return (
     <article className={styles.postPreview}>
@@ -48,7 +39,7 @@ export default ({ data }) => {
             {' '}
             min read
           </div>
-          <Like resourceId={id} likesCount={likesCount} key={`${id}-${likesCount}`} />
+          <Like resourceId={id} likesCount={likes} />
         </footer>
       </div>
     </article>
