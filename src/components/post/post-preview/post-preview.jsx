@@ -39,7 +39,7 @@ export default ({ data }) => {
             {' '}
             min read
           </div>
-          <Like resourceId={id} likesCount={likes} />
+          <Like resourceId={id} likesCount={likes} key={`${id}-${likes}`} />
         </footer>
       </div>
     </article>

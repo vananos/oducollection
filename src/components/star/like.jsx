@@ -36,7 +36,7 @@ export default class Like extends React.Component {
       return;
     }
 
-    w.setItem(storageId(resourceId), String(true));
+    w.localStorage.setItem(storageId(resourceId), String(true));
 
     fetch('.netlify/functions/like', {
       method: 'POST',
@@ -58,7 +58,7 @@ export default class Like extends React.Component {
           }
         },
       )
-      .catch(() => w.removeItem(storageId(resourceId)));
+      .catch(() => w.localStorage.removeItem(storageId(resourceId)));
 
     this.setState({
       updating: true,

@@ -7,7 +7,9 @@ export default ({
 }) => {
   const [likes, setLikes] = useState({});
   useEffect(() => {
-    likesProvider(posts.map(({ node }) => node.id)).then((likesCount) => setLikes(likesCount));
+    likesProvider(posts.map(({ node }) => node.id)).then((likesCount) => {
+      setLikes(likesCount);
+    });
   }, []);
   return (
     <section>
