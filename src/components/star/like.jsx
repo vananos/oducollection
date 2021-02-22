@@ -6,6 +6,8 @@ import starFull from '../../../static/star-full.svg';
 
 const storageId = (id) => `liked_${id}`;
 
+const w = typeof window !== 'undefined' && window;
+
 export default class Like extends React.Component {
   constructor(props) {
     super(props);
@@ -14,10 +16,10 @@ export default class Like extends React.Component {
       likesCount,
     } = props;
 
-    const storageAvailable = !!window.localStorage;
+    const storageAvailable = !!w.localStorage;
 
     this.state = {
-      liked: !storageAvailable || Boolean(window.localStorage.getItem(storageId(resourceId))),
+      liked: !storageAvailable || Boolean(w.localStorage.getItem(storageId(resourceId))),
       updating: false,
       resourceId,
       likesCount,
@@ -33,7 +35,8 @@ export default class Like extends React.Component {
     if (liked) {
       return;
     }
-    window.localStorage.setItem(storageId(resourceId), String(true));
+
+    w.setItem(storageId(resourceId), String(true));
 
     fetch('.netlify/functions/like', {
       method: 'POST',
@@ -55,7 +58,7 @@ export default class Like extends React.Component {
           }
         },
       )
-      .catch(() => window.localStorage.removeItem(storageId(resourceId)));
+      .catch(() => w.removeItem(storageId(resourceId)));
 
     this.setState({
       updating: true,

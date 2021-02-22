@@ -44,7 +44,6 @@ export default class Carousel extends React.Component {
     } = this.state;
     const canScrollToRight = scrollLeft + width < scrollWidth;
     const canScrollLeft = scrollLeft > 0;
-    console.log(scrollToLeft, canScrollLeft, scrollToRight, canScrollToRight);
     if (scrollToLeft !== canScrollLeft || scrollToRight !== canScrollToRight) {
       this.setState({
         scrollToLeft: canScrollLeft,
@@ -74,7 +73,6 @@ export default class Carousel extends React.Component {
       scrollToLeft,
       scrollToRight,
     } = this.state;
-    console.log(scrollToLeft, scrollToRight);
     const fluidImages = photos.map((node) => node.file.url);
 
     return (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'gatsby';
 import Img from 'gatsby-image';
 import styles from './post-preview.module.scss';
@@ -17,13 +17,13 @@ export default ({ data }) => {
     likes,
   } = data;
   const [likesCount, setLikes] = useState(0);
-  console.log('render', id, likesCount);
 
-  likes(id).then((currentLikesCount) => {
-    if (currentLikesCount !== likesCount) {
-      setLikes(currentLikesCount);
-    }
-  });
+  useEffect(() => likes(id)
+    .then((currentLikesCount) => {
+      if (currentLikesCount !== likesCount) {
+        setLikes(currentLikesCount);
+      }
+    }));
 
   return (
     <article className={styles.postPreview}>
