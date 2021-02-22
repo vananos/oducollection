@@ -30,14 +30,17 @@
     background: transparent;
     cursor: pointer;
     width: 50px;
+    height: 100%;
     position: absolute;
-    top: calc(50% - 10px);
+    top: 0;
   }
 
   .left {
-    position: absolute;
-    left: 10px;
+    left: 0;
     &:after {
+      position: absolute;
+      top: calc(50% - 12px);
+      left: 10px;
       visibility: hidden;
       display: block;
       content: "";
@@ -50,9 +53,12 @@
   }
 
   .right {
-    right: -15px;
+    right: 0;
     &:after {
+      position: absolute;
       visibility: hidden;
+      right: 10px;
+      top: calc(50% - 12px);
       display: block;
       content: "";
       width: 0;

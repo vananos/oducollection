@@ -4,14 +4,6 @@ import { renderRichText } from 'gatsby-source-contentful/rich-text';
 import Img from 'gatsby-image';
 import { Menu } from '../components/navbar/navbar';
 
-export function toFormattedDateString(dateString) {
-  const date = new Date(dateString);
-  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December',
-  ];
-  return [date.getDay() + 1, monthNames[date.getMonth()], date.getFullYear()].join(' ');
-}
-
 export function minutesToRead(text) {
   return Math.max(Math.round(text.split(/\s+/).length / 150), 1);
 }
@@ -56,4 +48,22 @@ export function typeToMenuItem(type) {
   };
 
   return TypeMenuMap[effectiveType] || Menu.ABOUT;
+}
+
+export function likesProvider(resourceIds) {
+  let likes = null;
+  return async (resourceId) => {
+    if (!likes) {
+      likes = fetch('.netlify/functions/get-likes-count', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          resourceIds,
+        }),
+      }).then((res) => res.json());
+    }
+    return (await likes)[resourceId] || 0;
+  };
 }

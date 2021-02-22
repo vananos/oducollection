@@ -19,17 +19,15 @@ export default class Carousel extends React.Component {
 
     this.scrollListener = this.scrollListener.bind(this);
     this.scrollLeftIntervalId = null;
-    this.scrollLeftRightId = null;
+    this.scrollRightIntervalId = null;
   }
 
   componentDidMount() {
-    this.carouselRef.current.addEventListener('scroll', this.scrollListener);
     window.addEventListener('resize', this.scrollListener);
     this.scrollListener();
   }
 
   componentWillUnmount() {
-    this.carouselRef.current.removeEventListener('scroll', this.scrollListener);
     window.removeEventListener('resize', this.scrollListener);
   }
 
@@ -40,16 +38,16 @@ export default class Carousel extends React.Component {
     } = this.carouselRef.current;
 
     const { width } = this.carouselRef.current.getBoundingClientRect();
-    const { scrollToLeft } = this.state;
+    const {
+      scrollToLeft,
+      scrollToRight,
+    } = this.state;
     const canScrollToRight = scrollLeft + width < scrollWidth;
-    if (scrollLeft === 0) {
+    const canScrollLeft = scrollLeft > 0;
+    console.log(scrollToLeft, canScrollLeft, scrollToRight, canScrollToRight);
+    if (scrollToLeft !== canScrollLeft || scrollToRight !== canScrollToRight) {
       this.setState({
-        scrollToLeft: false,
-        scrollToRight: canScrollToRight,
-      });
-    } else if (!canScrollToRight || !scrollToLeft) {
-      this.setState({
-        scrollToLeft: true,
+        scrollToLeft: canScrollLeft,
         scrollToRight: canScrollToRight,
       });
     }
@@ -59,12 +57,9 @@ export default class Carousel extends React.Component {
     const {
       scrollWidth,
       scrollLeft,
-
     } = this.carouselRef.current;
 
-    const newScrollLeft = Math.max(0, Math.min(scrollLeft + delta, scrollWidth));
-
-    this.carouselRef.current.scrollLeft = newScrollLeft;
+    this.carouselRef.current.scrollLeft = Math.max(0, Math.min(scrollLeft + delta, scrollWidth));
   }
 
   render() {
@@ -79,7 +74,7 @@ export default class Carousel extends React.Component {
       scrollToLeft,
       scrollToRight,
     } = this.state;
-
+    console.log(scrollToLeft, scrollToRight);
     const fluidImages = photos.map((node) => node.file.url);
 
     return (
@@ -93,8 +88,11 @@ export default class Carousel extends React.Component {
             onMouseUp={() => {
               clearInterval(this.scrollLeftIntervalId);
             }}
+            onMouseLeave={() => {
+              clearInterval(this.scrollLeftIntervalId);
+            }}
           />
-          <div className={styles.carousel} ref={this.carouselRef}>
+          <div className={styles.carousel} ref={this.carouselRef} onScroll={this.scrollListener}>
             {photos.map((image, i) => (
               <div
                 onClick={() => {
@@ -116,10 +114,13 @@ export default class Carousel extends React.Component {
           <div
             className={[styles.arrow, styles.right, scrollToRight ? styles.shown : ''].join(' ')}
             onMouseDown={() => {
-              this.scrollLeftIntervalId = setInterval(() => this.scroll(+DELTA), TIMEOUT);
+              this.scrollRightIntervalId = setInterval(() => this.scroll(+DELTA), TIMEOUT);
             }}
             onMouseUp={() => {
-              clearInterval(this.scrollLeftIntervalId);
+              clearInterval(this.scrollRightIntervalId);
+            }}
+            onMouseLeave={() => {
+              clearInterval(this.scrollRightIntervalId);
             }}
           />
         </div>
