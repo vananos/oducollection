@@ -51,19 +51,13 @@ export function typeToMenuItem(type) {
 }
 
 export function likesProvider(resourceIds) {
-  let likes = null;
-  return async (resourceId) => {
-    if (!likes) {
-      likes = fetch('.netlify/functions/get-likes-count', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          resourceIds,
-        }),
-      }).then((res) => res.json());
-    }
-    return (await likes)[resourceId] || 0;
-  };
+  return fetch('.netlify/functions/get-likes-count', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      resourceIds,
+    }),
+  }).then((res) => res.json());
 }
