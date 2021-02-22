@@ -20,6 +20,7 @@ export default ({ data }) => {
 
   useEffect(() => likes(id)
     .then((currentLikesCount) => {
+      console.error('UUUUUUUUU', currentLikesCount);
       if (currentLikesCount !== likesCount) {
         setLikes(currentLikesCount);
       }

@@ -62,10 +62,7 @@ export function likesProvider(resourceIds) {
         body: JSON.stringify({
           resourceIds,
         }),
-      }).then((res) => {
-        console.error('PIZDEC', res);
-        return res.json();
-      }).then((res) => res);
+      }).then((res) => res.json());
     }
     return (await likes)[resourceId] || 0;
   };
