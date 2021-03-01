@@ -48,6 +48,7 @@ query portraitsQuery {
             url
           }
           title
+          description
         }
       }
     }

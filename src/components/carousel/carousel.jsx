@@ -1,6 +1,7 @@
 import React from 'react';
 import Img from 'gatsby-image';
 import Lightbox from 'react-image-lightbox';
+import 'react-image-lightbox/style.css';
 import styles from './carousel.module.scss';
 
 const TIMEOUT = 10;
@@ -124,9 +125,12 @@ export default class Carousel extends React.Component {
         </div>
         {photoPreview && (
           <Lightbox
+            imagePadding={50}
+            imageTitle={photos[idx].title}
+            imageDescription={photos[idx].description}
             mainSrc={images[idx]}
             nextSrc={images[(idx + 1) % images.length]}
-            prevSrc={images[idx + images.length - 1] % images.length}
+            prevSrc={images[(idx + images.length - 1) % images.length]}
             onCloseRequest={() => this.setState({
               photoPreview: false,
             })}
