@@ -17,13 +17,19 @@ export default class Like extends React.Component {
     } = props;
 
     const storageAvailable = !!w.localStorage;
-
+    this.shouldUpdateLike = true;
     this.state = {
-      liked: !storageAvailable || Boolean(w.localStorage.getItem(storageId(resourceId))),
+      liked: !storageAvailable || w.localStorage.getItem(storageId(resourceId)) === 'true',
       updating: false,
       resourceId,
       likesCount,
     };
+  }
+
+  componentWillUnmount() {
+    if (this.shouldUpdateLike) {
+      this.shouldUpdateLike = false;
+    }
   }
 
   like() {
@@ -31,12 +37,12 @@ export default class Like extends React.Component {
       resourceId,
       likesCount,
       liked,
+      updating,
     } = this.state;
-    if (liked) {
+    if (updating) {
       return;
     }
-
-    w.localStorage.setItem(storageId(resourceId), String(true));
+    const newLikedState = !liked;
 
     fetch('.netlify/functions/like', {
       method: 'POST',
@@ -44,21 +50,22 @@ export default class Like extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
+        likedState: newLikedState ? 'liked' : 'unliked',
         resourceId,
       }),
     })
       .then(
         (res) => {
-          if (res.ok) {
+          if (res.ok && this.shouldUpdateLike) {
+            w.localStorage.setItem(storageId(resourceId), String(newLikedState));
             this.setState({
-              likesCount: likesCount + 1,
+              likesCount: likesCount + (newLikedState ? 1 : -1),
               updating: false,
-              liked: true,
+              liked: newLikedState,
             });
           }
         },
-      )
-      .catch(() => w.localStorage.removeItem(storageId(resourceId)));
+      );
 
     this.setState({
       updating: true,

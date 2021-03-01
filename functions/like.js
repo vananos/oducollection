@@ -5,8 +5,22 @@ const client = new faunadb.Client({
   secret: process.env.FAUNADB_SECRET,
 });
 
+const LikedEnum = {
+  liked: 1,
+  unliked: -1,
+};
+
 exports.handler = async function (event) {
-  const { resourceId } = JSON.parse(event.body);
+  const {
+    resourceId,
+    likedState,
+  } = JSON.parse(event.body);
+
+  const likedInc = LikedEnum[likedState];
+  if (likedInc === undefined) {
+    throw new Error('Invalid liked state');
+  }
+
   return client.query(
     q.Get(q.Match(q.Index('likes_index'), resourceId)),
   )
@@ -16,7 +30,7 @@ exports.handler = async function (event) {
     }) => q.Update(ref, {
       data: {
         ...data,
-        count: data.count + 1,
+        count: data.count + likedInc,
       },
     }))
     .catch((reason) => {
