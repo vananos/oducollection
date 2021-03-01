@@ -68,11 +68,18 @@ query blogListQuery($skip: Int!, $limit: Int!, $type: String!) {
           content {
             raw
             references {
-              file {
-                url
+              ... on ContentfulAsset {
+                id
+                contentful_id
+                title
+                description
+                fixed(width: 240, height: 340) {
+                  ...GatsbyContentfulFixed_tracedSVG
+                }
+                file {
+                  url
+                }
               }
-              description
-              title
             }
           }
           createdAt(formatString: "Do MMMM YYYY")

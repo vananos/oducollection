@@ -5,17 +5,15 @@
 
     h1 {
       display: inline-block;
-      margin-bottom: 20px;
     }
 
     .session-info {
-      float: right;
-
       span {
         display: inline-block;
         font-size: $font-size-small;
         color: $dark-light;
         margin-right: 10px;
+        margin-bottom: 20px;
       }
 
       .like-wrapper {
